@@ -46,6 +46,9 @@ Route::middleware('super-admin')->group(function () {
 
     Route::get('/admin-customers', Customers::class)
     ->name('admin.customers');
+
+    Route::get('/admin-product', Product::class)
+    ->name('admin.product');
 });
     
 

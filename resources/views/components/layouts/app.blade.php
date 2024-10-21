@@ -58,6 +58,89 @@
         .links:hover {
             color: lightblue;
         }
+
+
+
+        /* Sidebar styling */
+        .wrapper {
+            display: flex;
+        }
+
+        #sidebar {
+            min-width: 250px;
+            background: #7386D5;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        #sidebar li {
+            list-style-type: none;
+        }
+
+        #sidebar li a {
+            text-decoration: none;
+        }
+
+        #sidebar.active {
+            margin-left: -250px;
+        }
+
+        #content {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+
+            #sidebar {
+                margin-left: 0;
+            }
+
+            #sidebarCollapse {
+                display: none;
+            }
+        }
+
+        #dashboardBtn,
+        #userBtn,
+        #signoutBtn {
+            width: 100%;
+            color: white;
+            background: dark;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        #dashboardBtn:hover {
+            color: black;
+            background: lightgray;
+        }
+
+        #userBtn:hover {
+            color: black;
+            background: lightgray;
+        }
+
+        #signoutBtn:hover {
+            color: black;
+            background: lightgray;
+        }
+
+        /* Add transition effect for icon */
+        #toggleIcon {
+            transition: transform 0.3s ease;
+        }
+
+        #sidebar.active #toggleIcon {
+            transform: rotate(90deg);
+            /* Rotate the icon when the sidebar is active */
+        }
     </style>
 </head>
 
@@ -74,7 +157,36 @@
         @include('customer-navbar.app')
     @endif
 
+
     {{ $slot }}
+
+
+    <!-- Script to toggle sidebar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the sidebar collapse button
+            const sidebarCollapse = document.getElementById('sidebarCollapse');
+            // Get the sidebar element
+            const sidebar = document.getElementById('sidebar');
+            // Get the toggle icon
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            // Add click event listener to toggle the sidebar
+            sidebarCollapse.addEventListener('click', function() {
+                // Toggle 'active' class on the sidebar
+                sidebar.classList.toggle('active');
+
+                // Change icon based on sidebar state
+                if (sidebar.classList.contains('active')) {
+                    toggleIcon.classList.remove('bi-list');
+                    toggleIcon.classList.add('bi-x');
+                } else {
+                    toggleIcon.classList.remove('bi-x');
+                    toggleIcon.classList.add('bi-list');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
