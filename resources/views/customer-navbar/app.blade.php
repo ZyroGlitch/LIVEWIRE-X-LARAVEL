@@ -28,8 +28,8 @@
                 <li class="nav-item">
                     <a class="nav-link fs-5 fw-bold @if (request()->is('customer')) current @endif"
                         href="{{ route('livewire.customer') }}" @class(['current' => request()->is('/customer')]) wire:navigate><i
-                            class="bi bi-people-fill"></i>
-                        Customer</a>
+                            class="bi bi-person-circle"></i>
+                        Profile</a>
                 </li>
             </ul>
 

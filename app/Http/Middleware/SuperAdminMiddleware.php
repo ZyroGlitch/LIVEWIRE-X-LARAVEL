@@ -5,11 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
-class CustomerMiddleware
+class SuperAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -25,13 +24,9 @@ class CustomerMiddleware
             // Fetch the user from the database using the ID stored in session
             $user = User::where('userID',$userID)->first();
             
-            if ($user->role == 'Customer') {
+            if ($user->role == 'Super Admin') {
                 return $next($request);
             }
-
-            // if($user->role == 'Super Admin'){
-            //     return $next($request);
-            // }
         }
 
         // Return unauthorized if user is not found or not a customer

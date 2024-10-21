@@ -30,6 +30,7 @@ class SignUp extends Component
             
             if($store){
                 Session::put('userID',$user->userID);
+                // return $this->redirect('/product',navigate:true);
                 return redirect()->route('livewire.product');
             }else{
                 return redirect()->route('livewire.signUp')

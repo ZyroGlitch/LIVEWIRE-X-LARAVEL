@@ -11,4 +11,9 @@ class LogoutController extends Controller
         Session::flush(); // Remove all session
         return redirect()->route('livewire.signIn');
     }
+
+    public function signout(){
+        Session::flush(); // Remove all session
+        return redirect()->route('livewire.signIn');
+    }
 }

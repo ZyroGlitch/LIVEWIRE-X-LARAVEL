@@ -22,7 +22,16 @@ class SignIn extends Component
         if ($user && Hash::check($this->password, $user->password)) {
             Session::put('userID',$user->userID);
             
-            $this->redirectRoute('livewire.product');
+            switch($user->role){
+                case 'Customer':
+                    $this->redirectRoute('livewire.product');
+                    break;
+                case 'Super Admin':
+                    $this->redirectRoute('admin.dashboard');
+                    break;
+            }
+            
+            
         } else {
             $this->redirectRoute('livewire.signIn');
         }
