@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <a class="navbar-brand fw-bold text-light" href="{{ route('livewire.product') }}" @class(['current' => request()->is('/')])
             wire:navigate>
-            <img src="assets/livewire.png" alt="Logo" class="object-fit-contain" style="width:50px;height:50px;">
+            <img src="{{ asset('assets/livewire.png') }}" alt="Logo" class="object-fit-contain"
+                style="width:50px;height:50px;">
             Livewire x Laravel
         </a>
 

@@ -11,9 +11,11 @@
 
          <!-- Home Dropdown Menu -->
          <li class="d-flex justify-content-start align-items-center p-3 mb-1" style="height:50px;">
-             <a wire:navigate href="{{ route('admin.dashboard') }}" id="dashboardBtn"><i
+             <a wire:navigate href="{{ route('admin.dashboard') }}"
+                 class="admin-link @if (request()->is('/admin-dashboard')) admin-current @endif"><i
                      class="bi bi-house-fill me-2"></i>
-                 <span>Dashboard</span></a>
+                 <span>Dashboard</span>
+             </a>
          </li>
          <li class="d-flex justify-content-start align-items-center  p-3" style="height:50px;">
              <a wire:navigate href="{{ route('admin.transaction') }}" id="userBtn"><i class="bi bi-receipt me-2"></i>
@@ -25,11 +27,11 @@
                  <span>Customers</span></a>
          </li>
          <li class="d-flex justify-content-start align-items-center  p-3" style="height:50px;">
-             <a wire:navigate href="{{ route('admin.product') }}" id="userBtn"><i class="bi bi-boxes me-2"></i>
+             <a wire:navigate href="{{ route('admin.addProduct') }}" id="userBtn"><i class="bi bi-boxes me-2"></i>
                  <span>Add Product</span></a>
          </li>
          <li class="d-flex justify-content-start align-items-center  p-3" style="height:50px;">
-             <a wire:navigate href="{{ route('view.adminLogout') }}" id="signoutBtn"><i
+             <a wire:navigate href="{{ route('admin.signout') }}" id="signoutBtn"><i
                      class="bi bi-arrow-left-square-fill me-2"></i>
                  <span>Sign Out</span></a>
          </li>

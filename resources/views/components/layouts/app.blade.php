@@ -12,15 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-    <link rel="icon" href="assets/livewire.png">
+    <link rel="icon" href="{{ asset('assets/livewire.png') }}">
 
-    <!-- Scripts -->
+    {{-- BOOTSTRAP SCRIPT TAG --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     {{-- BOOTSTRAP ICON CDN --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- SweetJsAlert2 CDN -->
+    {{-- SweetJsAlert2 CDN --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
@@ -141,6 +141,35 @@
             transform: rotate(90deg);
             /* Rotate the icon when the sidebar is active */
         }
+
+        .admin-link {
+            width: 100%;
+            color: white;
+            background: dark;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .admin-link:hover {
+            color: black;
+            background: lightgray;
+        }
+
+
+        .admin-current {
+            color: black;
+            background: lightgray;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 25px;
+            gap: 25px;
+            /* 3 equal columns */
+        }
     </style>
 </head>
 
@@ -154,6 +183,10 @@
     @endif
 
     @if (request()->is('customer'))
+        @include('customer-navbar.app')
+    @endif
+
+    @if (request()->is('product/view'))
         @include('customer-navbar.app')
     @endif
 
@@ -185,6 +218,11 @@
                     toggleIcon.classList.add('bi-list');
                 }
             });
+        });
+
+
+        document.addEventListener('clear-file-input', function() {
+            document.querySelector('#product-name').value = null;
         });
     </script>
 </body>
