@@ -31,6 +31,17 @@
             height: 100%;
         }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
         .nav-link {
             color: white;
         }
@@ -174,24 +185,41 @@
 </head>
 
 <body>
-    @if (request()->is('product'))
+    @if (request()->is('product') ||
+            request()->is('orders') ||
+            request()->is('customer') ||
+            request()->is('product/view') ||
+            request()->is('product/payment'))
         @include('customer-navbar.app')
     @endif
-
-    @if (request()->is('orders'))
-        @include('customer-navbar.app')
-    @endif
-
-    @if (request()->is('customer'))
-        @include('customer-navbar.app')
-    @endif
-
-    @if (request()->is('product/view'))
-        @include('customer-navbar.app')
-    @endif
-
 
     {{ $slot }}
+
+
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    text: '{{ session('message') }}',
+                });
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}',
+                    text: '{{ session('message') }}',
+                });
+            });
+        </script>
+    @endif
 
 
     <!-- Script to toggle sidebar -->

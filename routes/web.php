@@ -5,8 +5,10 @@ use App\Livewire\AuthComponent\SignIn;
 use App\Livewire\AuthComponent\SignUp;
 use App\Livewire\PageComponent\Orders;
 use App\Livewire\PageComponent\Customer;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\LogoutController;
 use App\Livewire\PageComponent\ShowProduct;
+use App\Livewire\PageComponent\PaymentProcess;
 use App\Livewire\SuperAdminComponent\Customers;
 use App\Livewire\SuperAdminComponent\Dashboard;
 use App\Livewire\SuperAdminComponent\AddProduct;
@@ -29,6 +31,12 @@ Route::middleware('customer')->group(function () {
 
     Route::post('/product/view', ShowProduct::class)
     ->name('product.view');
+
+    Route::post('/product/payment', PaymentProcess::class)
+    ->name('product.payment');
+
+    Route::post('/product/orderProcess', [OrderController::class,'store'])
+    ->name('product.orderProcess');
 
     Route::get('/orders', Orders::class)
     ->name('livewire.orders');

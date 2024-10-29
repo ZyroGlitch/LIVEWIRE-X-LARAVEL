@@ -16,10 +16,11 @@
                             class="object-fit-contain" style="width:350px;height:350px;">
                     </div>
                     <div class="col-lg-6 col-md-6 bg-dark text-light p-3">
-                        <form wire:submit='store' method="post">
+                        <form action="{{ route('product.payment') }}" method="post">
                             @csrf
+                            @method('post')
 
-                            <input type="hidden" value="{{ $getProductID->productID }}" wire:model='productID'>
+                            <input type="hidden" value="{{ $getProductID->productID }}" name="productID">
 
                             <h2>{{ $getProductID->name }}</h2>
                             <p class="mb-4">{{ $getProductID->description }}</p>
@@ -31,16 +32,12 @@
                             <div class="mb-4">
                                 <label for="quantity" class="form-label">Quantity</label>
                                 <input type="number" class="form-control" id="quantity" required value="1"
-                                    min="1" wire:model='quantity'>
+                                    name="quantity">
                             </div>
 
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-light fw-bold"><i class="bi bi-bag-fill"></i>
                                     BUY</button>
-                            </div>
-
-                            <div wire:loading>
-                                Saving post...
                             </div>
                         </form>
                     </div>
